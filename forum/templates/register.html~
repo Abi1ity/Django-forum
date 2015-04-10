@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block login/logout %}
-    <a href="/login" style="color:green">Войти</a>
+    <a href="/login" style="color:black">Войти</a>
 {% endblock %}
 
 {% block content %}
