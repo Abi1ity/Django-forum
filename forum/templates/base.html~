@@ -1,21 +1,52 @@
+{% load staticfiles %}
+
 <html>
   <head>
     <meta charset='utf-8'>
     <title>Форумчик</title>
+    {% if title %}
+    <title>{{title}} - microblog</title>
+    {% else %}
+    <title>microblog</title>
+    {% endif %}
+    <link href="{% static '/css/bootstrap.min.css' %}" rel="stylesheet" media="screen">
+    <link href="{% static '/css/bootstrap-responsive.min.css' %}" rel="stylesheet">
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+    <script src="{% static '/js/bootstrap.min.js' %}"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
   </head>
   <body>
-    <div id='header' style="background-color: #ADFF2F">
-      |
-      <a href='/forum' style="color:green">Форум</a>
-      |
-      {% block login/logout %}
-      {% endblock %} 
-      |
+    <div class="container">
+      <div class="navbar">
+        <div class="navbar-inner">
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+          <a class="brand" href='/home'>Home</a>
+            <ul class="nav">
+              <li><a href='/home'>{{ _('Home') }}</a></li>
+              {% if user.is_authenticated %}
+              <li><a href='/logout'>{{ _('Выйти') }}</a></li>
+              {% else %}
+              <li><a href='/login'>{{ _('Войти') }}</a></li>
+              <li><a href='/register'>{{ _('Регистрация') }}</a></li>          
+              {% endif %}
+            </ul>
+        </div>
+      </div>
+    <div class="pull-left">
+        <img src="{% static '/img/forum.jpg' %}"  height="100" width="240" alt="" border="0" href='/home'> <!-- <img src="..." alt="..." class="img-thumbnail"> -->
     </div>
-    
-    <div id='content' style="background-color: #00FF00">
-      {% block content%}
-      {% endblock %}
-    </div>
+      <div class="row">
+        <div class="span12">
+          {% block content %}{% endblock %}
+        </div>
+      </div>
+    </div>   
+
+
+
   </body>
 </html>

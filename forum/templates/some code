@@ -1,0 +1,13 @@
+    <div id='header' style="background-color: #00FF00">
+      |
+      <a href='/forum' style="color:green">Форум</a>
+      |
+      {% block login/logout %}
+      {% endblock %} 
+      |
+    </div>
+    
+    <div id='content' style="background-color: #ADFF2F">
+      {% block content%}
+      {% endblock %}
+    </div>
